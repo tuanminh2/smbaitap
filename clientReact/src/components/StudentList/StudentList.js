@@ -66,7 +66,28 @@ function StudentList() {
     setStudentListCp(rslist);
   };
   const hdlSearchGenderChange = (event) => {
-    setGender(event.target.value);
+    let genderSearch = event.target.value;
+    setGender(genderSearch.trim());
+
+    let listcp = [...studentList];
+
+
+    let rslist = [];
+
+    if (name || email) {
+      rslist = listcp.filter(
+        (v, i) =>
+          v.name.trim().indexOf(name.trim()) !== -1 &&
+          v.gender.trim().indexOf(genderSearch) !== -1 &&
+          v.email.trim().indexOf(email.trim()) !== -1
+      );
+    } else {
+      rslist = listcp.filter(
+        (v, i) => v.gender.trim().indexOf(genderSearch.trim()) !== -1
+      );
+    }
+
+    setStudentListCp(rslist);
   };
 
   const hdlDeleteStudent = (id) => {
@@ -137,7 +158,7 @@ function StudentList() {
                       type="radio"
                       name="gender"
                       value="M"
-                      onChange={hdlSearchGenderChange}
+                      onChange={(e) => hdlSearchGenderChange(e)}
                     />
                   </div>
                   <div>
@@ -146,7 +167,7 @@ function StudentList() {
                       type="radio"
                       name="gender"
                       value="F"
-                      onChange={hdlSearchGenderChange}
+                      onChange={(e) => hdlSearchGenderChange(e)}
                     />
                   </div>
 
@@ -156,7 +177,7 @@ function StudentList() {
                       type="radio"
                       name="gender"
                       value=""
-                      onChange={hdlSearchGenderChange}
+                      onChange={(e) => hdlSearchGenderChange(e)}
                     />
                   </div>
                 </div>
