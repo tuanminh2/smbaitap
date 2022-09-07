@@ -1,0 +1,13 @@
+@use "@material/button/styles";
+// @use '@material/icon-button';
+@use '@material/top-app-bar/mdc-top-app-bar';
+
+// @include icon-button.core-styles;
+@import './components/settings.scss';
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+// body {
+// }
